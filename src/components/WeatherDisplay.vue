@@ -20,22 +20,36 @@
 
       <div class="weather-details">
         <div class="detail-item">
-          <span class="detail-label">Feels Like:</span>
-          <span class="detail-value"
-            >{{ Math.round(weatherData.main.feels_like) }}°C</span
-          >
+          <i class="fas fa-temperature-high detail-icon"></i>
+          <div>
+            <span class="detail-label">Feels Like</span>
+            <span class="detail-value"
+              >{{ Math.round(weatherData.main.feels_like) }}°C</span
+            >
+          </div>
         </div>
         <div class="detail-item">
-          <span class="detail-label">Humidity:</span>
-          <span class="detail-value">{{ weatherData.main.humidity }}%</span>
+          <i class="fas fa-tint detail-icon"></i>
+          <div>
+            <span class="detail-label">Humidity</span>
+            <span class="detail-value">{{ weatherData.main.humidity }}%</span>
+          </div>
         </div>
         <div class="detail-item">
-          <span class="detail-label">Wind:</span>
-          <span class="detail-value">{{ weatherData.wind.speed }} m/s</span>
+          <i class="fas fa-wind detail-icon"></i>
+          <div>
+            <span class="detail-label">Wind</span>
+            <span class="detail-value">{{ weatherData.wind.speed }} m/s</span>
+          </div>
         </div>
         <div class="detail-item">
-          <span class="detail-label">Pressure:</span>
-          <span class="detail-value">{{ weatherData.main.pressure }} hPa</span>
+          <i class="fas fa-tachometer-alt detail-icon"></i>
+          <div>
+            <span class="detail-label">Pressure</span>
+            <span class="detail-value"
+              >{{ weatherData.main.pressure }} hPa</span
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -79,27 +93,34 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
 .weather-display {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   max-width: 500px;
-  margin: 0 auto;
+  margin: 20px auto;
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   .weather-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     h2 {
       margin: 0;
-      color: #2c3e50;
+      font-size: 28px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .weather-description {
-      margin: 5px 0 0;
-      color: #7f8c8d;
+      margin: 8px 0 0;
       font-size: 18px;
+      opacity: 0.9;
     }
   }
 
@@ -111,23 +132,25 @@ export default defineComponent({
     .temperature {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
 
       .weather-icon {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
       }
 
       .temp-value {
-        font-size: 48px;
-        font-weight: bold;
+        font-size: 72px;
+        font-weight: 300;
         margin: 0 5px;
-        color: #2c3e50;
       }
 
       .temp-unit {
-        font-size: 24px;
-        color: #7f8c8d;
+        font-size: 32px;
+        font-weight: 300;
+        align-self: flex-start;
+        margin-top: 10px;
       }
     }
 
@@ -139,18 +162,37 @@ export default defineComponent({
 
       .detail-item {
         display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: #f8f9fa;
-        border-radius: 4px;
+        align-items: center;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+
+        .detail-icon {
+          font-size: 20px;
+          margin-right: 12px;
+          opacity: 0.8;
+        }
+
+        div {
+          display: flex;
+          flex-direction: column;
+        }
 
         .detail-label {
-          color: #7f8c8d;
+          font-size: 14px;
+          opacity: 0.8;
+          margin-bottom: 4px;
         }
 
         .detail-value {
-          font-weight: bold;
-          color: #2c3e50;
+          font-weight: 600;
+          font-size: 16px;
         }
       }
     }
@@ -160,6 +202,21 @@ export default defineComponent({
 @media (max-width: 600px) {
   .weather-details {
     grid-template-columns: 1fr !important;
+  }
+
+  .weather-display {
+    padding: 20px;
+
+    .temperature {
+      .temp-value {
+        font-size: 60px !important;
+      }
+
+      .weather-icon {
+        width: 80px !important;
+        height: 80px !important;
+      }
+    }
   }
 }
 </style>
