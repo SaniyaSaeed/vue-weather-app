@@ -23,6 +23,10 @@ A responsive weather application built with Vue 3, TypeScript, and the OpenWeath
 - npm (v7+ recommended)
 - OpenWeatherMap API key (free tier available)
 
+## Screenshoot
+![alt text](image.png)
+![alt text](image-1.png)
+
 ## Project setup
 ```
 npm install
